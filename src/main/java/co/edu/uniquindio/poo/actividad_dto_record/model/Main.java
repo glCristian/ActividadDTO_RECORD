@@ -10,5 +10,14 @@ public class Main {
 
         EstudianteDTO dto = new EstudianteDTO(estudiante0);
 
+        EstudianteRecord record = new EstudianteRecord(estudiante0.getNombre(), estudiante0.getEdad());
+
+        EstudianteDTOUsandoRecord dtoRecord = new EstudianteDTOUsandoRecord(record);
+
+
+        System.out.println(dto);
+
+        System.out.println(record);
+
     }
 }

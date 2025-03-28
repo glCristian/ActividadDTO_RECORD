@@ -1,19 +1,17 @@
-package co.edu.uniquindio.poo;
+package co.edu.uniquindio.poo.actividad_dto_record.model;
 
-public class Usuario {
+
+public class UsuarioDTO {
 
     private String nombre;
     private String email;
     private int edad;
-    private String contrasena;
 
-    public Usuario(String nombre, String email, int edad, String contrasena) {
-        this.nombre = nombre;
-        this.email = email;
-        this.edad = edad;
-        this.contrasena = contrasena;
+    public UsuarioDTO(Usuario usuario){
+        this.nombre = usuario.getNombre();
+        this.email = usuario.getEmail();
+        this.edad = usuario.getEdad();
     }
-
 
     public String getNombre() {
         return nombre;
@@ -39,22 +37,13 @@ public class Usuario {
         this.edad = edad;
     }
 
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
 
     @Override
     public String toString() {
-        return "Usuario{" +
+        return "UsuarioDTO{" +
                 "nombre='" + nombre + '\'' +
                 ", email='" + email + '\'' +
                 ", edad=" + edad +
-                ", contrasena='" + contrasena + '\'' +
                 '}';
     }
 }

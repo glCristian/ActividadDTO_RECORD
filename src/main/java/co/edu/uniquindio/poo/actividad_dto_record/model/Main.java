@@ -1,4 +1,4 @@
-package co.edu.uniquindio.poo;
+package co.edu.uniquindio.poo.actividad_dto_record.model;
 
 public class Main {
     public static void main(String[] args) {

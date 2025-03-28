@@ -1,16 +1,13 @@
 package co.edu.uniquindio.poo.actividad_dto_record.model;
 
 
-public class UsuarioDTO {
-
+public class EstudianteDTO {
     private String nombre;
-    private String email;
     private int edad;
 
-    public UsuarioDTO(Usuario usuario){
-        this.nombre = usuario.getNombre();
-        this.email = usuario.getEmail();
-        this.edad = usuario.getEdad();
+    public EstudianteDTO(Estudiante estudiante) {
+        this.nombre = estudiante.getNombre();
+        this.edad = estudiante.getEdad();
     }
 
     public String getNombre() {
@@ -21,14 +18,6 @@ public class UsuarioDTO {
         this.nombre = nombre;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public int getEdad() {
         return edad;
     }
@@ -37,12 +26,10 @@ public class UsuarioDTO {
         this.edad = edad;
     }
 
-
     @Override
     public String toString() {
-        return "UsuarioDTO{" +
+        return "EstudianteDTO{" +
                 "nombre='" + nombre + '\'' +
-                ", email='" + email + '\'' +
                 ", edad=" + edad +
                 '}';
     }

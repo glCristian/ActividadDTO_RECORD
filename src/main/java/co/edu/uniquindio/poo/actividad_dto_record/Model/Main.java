@@ -1,4 +1,4 @@
-package co.edu.uniquindio.poo.actividad_dto_record.model;
+package co.edu.uniquindio.poo.actividad_dto_record.Model;
 
 import javax.swing.*;
 import java.awt.*;

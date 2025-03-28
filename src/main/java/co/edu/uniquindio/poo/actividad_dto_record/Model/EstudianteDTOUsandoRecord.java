@@ -1,8 +1,12 @@
-package co.edu.uniquindio.poo.actividad_dto_record.model;
+package co.edu.uniquindio.poo.actividad_dto_record.Model;
 
 public class EstudianteDTOUsandoRecord {
     private EstudianteRecord estudiante;
 
+    /**
+     * Constructor de la clase estudianteDTOUsandoRecord
+     * @param estudiante
+     */
     public EstudianteDTOUsandoRecord(EstudianteRecord estudiante) {
         this.estudiante = estudiante;
     }
@@ -11,6 +15,10 @@ public class EstudianteDTOUsandoRecord {
         return estudiante;
     }
 
+    /**
+     * Metodo toString de la clase estudianteDTOUsandoRecord
+     * @return
+     */
     @Override
     public String toString() {
         return "EstudianteDTOUsingRecord{" +

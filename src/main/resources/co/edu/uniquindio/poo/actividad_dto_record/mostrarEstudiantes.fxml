@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="aPn_mostrarEstudiantes" prefHeight="404.0" prefWidth="461.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.actividad_dto_record.MostrarCursos">
+   <children>
+      <Label fx:id="lbl_Estudiantes" layoutX="182.0" layoutY="31.0" text="Estudiantes">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblVw_estudiantes" layoutX="99.0" layoutY="98.0" prefHeight="200.0" prefWidth="263.0">
+         <columns>
+            <TableColumn fx:id="tblClm_nombreEstudiantes" prefWidth="177.0" text="Nombre" />
+            <TableColumn fx:id="tblClm_edadEstudiante" prefWidth="85.0" text="Edad" />
+         </columns>
+      </TableView>
+      <Button fx:id="btn_volverMenuEstudiante" layoutX="157.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClick_VolverMenuEstudiante" text="Volver" />
+      <Button fx:id="btn_salir" layoutX="254.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClick_salir" prefHeight="25.0" prefWidth="50.0" text="Salir" />
+      <Separator fx:id="sp_estudiantes1" layoutX="53.0" layoutY="73.0" prefHeight="3.0" prefWidth="355.0" />
+      <Separator fx:id="sp_estudiantes2" layoutX="53.0" layoutY="328.0" prefHeight="3.0" prefWidth="355.0" />
+   </children>
+</AnchorPane>

@@ -5,7 +5,7 @@ public class EstudianteDTOUsandoRecord {
 
     /**
      * Constructor de la clase estudianteDTOUsandoRecord
-     * @param estudiante
+     * @param estudiante reecord
      */
     public EstudianteDTOUsandoRecord(EstudianteRecord estudiante) {
         this.estudiante = estudiante;

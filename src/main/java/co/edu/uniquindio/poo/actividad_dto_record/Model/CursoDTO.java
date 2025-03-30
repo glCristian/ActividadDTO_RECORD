@@ -4,14 +4,15 @@ public class CursoDTO {
     private String nombreCurso;
     private int duracion;
 
+
     /**
      * Constructor de la clase CursoDTO
      * @param nombreCurso
      * @param duracion
      */
-    public CursoDTO(String nombreCurso, int duracion) {
-        this.nombreCurso = nombreCurso;
-        this.duracion = duracion;
+    public CursoDTO(Curso curso) {
+        this.nombreCurso = curso.getNombre();
+        this.duracion = curso.getDuracion();
     }
 
 

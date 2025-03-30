@@ -38,16 +38,30 @@ public class MenuInicioViewController {
     @FXML
     private Separator sp_menuInicio;
 
+    /**
+     *Metodo que maneja el evento de clic en el boton para regresar al menu de inicio.
+     * Carga la vista de menu inicio.
+     * @param event
+     */
     @FXML
     void onClick_curso(ActionEvent event) {
         cargarVista("/co/edu/uniquindio/poo/actividad_dto_record/menuCurso.fxml", "Menu de Curso");
     }
 
+    /**
+     * Metodo que maneja el evento de clic en el boton para abrir el menu de estudiante.
+     * carga la vista de menu estudiante
+     * @param event
+     */
     @FXML
     void onClick_estudiante(ActionEvent event) {
         cargarVista("/co/edu/uniquindio/poo/actividad_dto_record/menuEstudiante.fxml", "Menu de Estudiante");
     }
 
+    /**
+     * Metodo que se llama al inicializar el controlador.
+     * Verifica que todos los elementos de la interfaz se hayan inyectado correctamente.
+     */
     @FXML
     void initialize() {
         assert aPn_menuInicio != null : "fx:id=\"aPn_menuInicio\" was not injected: check your FXML file 'menuInicio.fxml'.";
@@ -58,6 +72,11 @@ public class MenuInicioViewController {
 
     }
 
+    /**
+     * Metodo que carga una nueva vista en la aplicación.
+     * @param vista
+     * @param titulo
+     */
     private void cargarVista(String vista, String titulo) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(vista));
@@ -73,6 +92,11 @@ public class MenuInicioViewController {
         }
     }
 
+    /**
+     * Metodo que muestra una alerta con un titulo y un mensaje.
+     * @param titulo
+     * @param mensaje
+     */
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titulo);

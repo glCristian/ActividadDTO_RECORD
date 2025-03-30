@@ -57,17 +57,30 @@ public class MostrarCursoViewController {
     @FXML
     private TableView<Curso> tblVw_cursos;
 
+    /**
+     * Metodo que maneja el evento de clic en el boton para volver al menu de curso.
+     * carga la vista de menu curso
+     * @param event
+     */
     @FXML
     void onClick_VolverMenuCurso(ActionEvent event) {
         cargarVista("/co/edu/uniquindio/poo/actividad_dto_record/menuCurso.fxml","Menu cursos");
     }
 
+    /**
+     * Metodo que maneja el evento de clic en el boton para salir de la aplicacion.
+     * @param event
+     */
     @FXML
     void onClick_salir(ActionEvent event) {
         Stage stage = (Stage) btn_salir.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Metodo que se llama al inicializar el controlador.
+     * Verifica que todos los elementos de la interfaz se hayan inyectado correctamente.
+     */
     @FXML
     void initialize() {
 
@@ -91,8 +104,9 @@ public class MostrarCursoViewController {
     }
 
 
-
-
+    /**
+     * Metodo que carga la lista de los cursos en la aplicación.
+     */
     private void cargarCursos() {
         if (escuela != null) {
             ObservableList<Curso> cursos = FXCollections.observableArrayList(escuela.getCursos());
@@ -100,7 +114,11 @@ public class MostrarCursoViewController {
         }
     }
 
-
+    /**
+     * Metodo que carga una nueva vista en la aplicacion.
+     * @param vista
+     * @param titulo
+     */
     private void cargarVista(String vista, String titulo) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(vista));
@@ -116,6 +134,11 @@ public class MostrarCursoViewController {
         }
     }
 
+    /**
+     * Metodo que muestra una alerta con un titulo y un mensaje.
+     * @param titulo
+     * @param mensaje
+     */
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);

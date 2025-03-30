@@ -7,8 +7,7 @@ public class CursoDTO {
 
     /**
      * Constructor de la clase CursoDTO
-     * @param nombreCurso
-     * @param duracion
+     * @param curso
      */
     public CursoDTO(Curso curso) {
         this.nombreCurso = curso.getNombre();

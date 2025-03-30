@@ -56,17 +56,30 @@ public class MostrarEstudianteViewController {
     @FXML
     private TableView<EstudianteDTO> tblVw_estudiantes;
 
+    /**
+     * Metodo que maneja el evento de clic en el boton para volver al menu de estudiante.
+     * carga la vista de menu curso
+     * @param event
+     */
     @FXML
     void onClick_VolverMenuEstudiante(ActionEvent event) {
         cargarVista("/co/edu/uniquindio/poo/actividad_dto_record/menuEstudiante.fxml", "Menú Estudiantes");
     }
 
+    /**
+     * Metodo que maneja el evento de clic en el boton para salir de la aplicacion.
+     * @param event
+     */
     @FXML
     void onClick_salir(ActionEvent event) {
         Stage stage = (Stage) btn_salir.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Metodo que se llama al inicializar el controlador.
+     * Verifica que todos los elementos de la interfaz se hayan inyectado correctamente.
+     */
     @FXML
     void initialize() {
         cargarEstudiantes();
@@ -85,6 +98,9 @@ public class MostrarEstudianteViewController {
         assert tblVw_estudiantes != null : "fx:id=\"tblVw_estudiantes\" was not injected: check your FXML file 'mostrarEstudiantes.fxml'.";
     }
 
+    /**
+     * metodo que carga la lista de estudiantes en la aplicación.
+     */
     private void cargarEstudiantes() {
         if (escuela != null) {
             List<EstudianteDTO> listaDTO = escuela.getEstudiantes().stream()
@@ -96,6 +112,11 @@ public class MostrarEstudianteViewController {
         }
     }
 
+    /**
+     * Metodo que carga una nueva vista en la aplicacion.
+     * @param vista
+     * @param titulo
+     */
     private void cargarVista(String vista, String titulo) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(vista));
@@ -111,6 +132,11 @@ public class MostrarEstudianteViewController {
         }
     }
 
+    /**
+     * Metodo que muestra una alerta con un titulo y un mensaje.
+     * @param titulo
+     * @param mensaje
+     */
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);

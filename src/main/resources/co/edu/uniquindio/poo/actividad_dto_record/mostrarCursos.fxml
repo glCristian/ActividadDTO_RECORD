@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane fx:id="aPn_mostrarCursos" prefHeight="404.0" prefWidth="461.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.actividad_dto_record.MostrarCursos">
+<AnchorPane fx:id="aPn_mostrarCursos" prefHeight="404.0" prefWidth="461.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.actividad_dto_record.ViewController.MostrarCursoViewController">
    <children>
       <Label fx:id="lbl_cursos" layoutX="202.0" layoutY="32.0" text="Cursos">
          <font>

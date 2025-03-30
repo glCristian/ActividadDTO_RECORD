@@ -1,17 +1,28 @@
 package co.edu.uniquindio.poo.actividad_dto_record.ViewController;
 
+import co.edu.uniquindio.poo.actividad_dto_record.Model.*;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
 
 public class MostrarCursoViewController {
+
+
+    private Escuela escuela = Escuela.getInstance();
 
     @FXML
     private ResourceBundle resources;
@@ -38,26 +49,35 @@ public class MostrarCursoViewController {
     private Separator sp_cursos2;
 
     @FXML
-    private TableColumn<?, ?> tblClm_duracionCurso;
+    private TableColumn<Curso, Integer> tblClm_duracionCurso;
 
     @FXML
-    private TableColumn<?, ?> tblClm_nombreCurso;
+    private TableColumn<Curso, String > tblClm_nombreCurso;
 
     @FXML
-    private TableView<?> tblVw_cursos;
+    private TableView<Curso> tblVw_cursos;
 
     @FXML
     void onClick_VolverMenuCurso(ActionEvent event) {
-
+        cargarVista("/co/edu/uniquindio/poo/actividad_dto_record/menuCurso.fxml","Menu cursos");
     }
 
     @FXML
     void onClick_salir(ActionEvent event) {
-
+        Stage stage = (Stage) btn_salir.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     void initialize() {
+
+        cargarCursos();
+
+        tblClm_nombreCurso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
+        tblClm_duracionCurso.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getDuracion()).asObject());
+
+
+
         assert aPn_mostrarCursos != null : "fx:id=\"aPn_mostrarCursos\" was not injected: check your FXML file 'mostrarCursos.fxml'.";
         assert btn_salir != null : "fx:id=\"btn_salir\" was not injected: check your FXML file 'mostrarCursos.fxml'.";
         assert btn_volverMenuCurso != null : "fx:id=\"btn_volverMenuCurso\" was not injected: check your FXML file 'mostrarCursos.fxml'.";
@@ -68,6 +88,40 @@ public class MostrarCursoViewController {
         assert tblClm_nombreCurso != null : "fx:id=\"tblClm_nombreCurso\" was not injected: check your FXML file 'mostrarCursos.fxml'.";
         assert tblVw_cursos != null : "fx:id=\"tblVw_cursos\" was not injected: check your FXML file 'mostrarCursos.fxml'.";
 
+    }
+
+
+
+
+    private void cargarCursos() {
+        if (escuela != null) {
+            ObservableList<Curso> cursos = FXCollections.observableArrayList(escuela.getCursos());
+            tblVw_cursos.setItems(cursos);
+        }
+    }
+
+
+    private void cargarVista(String vista, String titulo) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(vista));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) aPn_mostrarCursos.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle(titulo);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Error al cargar la vista", "No se pudo cargar la vista: " + vista);
+        }
+    }
+
+    private void mostrarAlerta(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 
 }

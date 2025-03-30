@@ -3,9 +3,9 @@ package co.edu.uniquindio.poo.actividad_dto_record.ViewController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import co.edu.uniquindio.poo.actividad_dto_record.Model.Curso;
-import co.edu.uniquindio.poo.actividad_dto_record.Model.Escuela;
+import co.edu.uniquindio.poo.actividad_dto_record.Controller.*;
+import co.edu.uniquindio.poo.actividad_dto_record.Model.*;
+import co.edu.uniquindio.poo.actividad_dto_record.App.HelloApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,13 +65,13 @@ public class MenuCursoViewController {
     @FXML
     private TextField txFl_nombreCurso;
 
-    private Escuela escuela;
-    private Curso curso;
+    private Escuela escuela = Escuela.getInstance();
+
 
 
     @FXML
     void onClick_mostrarCursos(ActionEvent event) {
-        cargarVista("mostrarCursos.fxml", "Lista de Cursos");
+        cargarVista("/co/edu/uniquindio/poo/actividad_dto_record/mostrarCursos.fxml", "Lista de Cursos");
     }
 
     @FXML
@@ -110,18 +110,7 @@ public class MenuCursoViewController {
 
     @FXML
     void onClick_volverMenuInicio(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("menuInicio.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) aPn_MenuCurso.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Menú de Inicio");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            mostrarAlerta("Error al cargar la vista", "No se pudo volver al menú de inicio.");
-        }
+       cargarVista("/co/edu/uniquindio/poo/actividad_dto_record/menuInicio.fxml", "Menú principal");
     }
 
     @FXML
@@ -141,7 +130,6 @@ public class MenuCursoViewController {
         assert txFl_duracionCurso != null : "fx:id=\"txFl_duracionCurso\" was not injected: check your FXML file 'menuCurso.fxml'.";
         assert txFl_nombreCurso != null : "fx:id=\"txFl_nombreCurso\" was not injected: check your FXML file 'menuCurso.fxml'.";
 
-        escuela = new Escuela("Escuela  Union");
     }
 
     private void mostrarAlerta(String titulo, String mensaje) {

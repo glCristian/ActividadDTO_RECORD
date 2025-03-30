@@ -1,17 +1,27 @@
 package co.edu.uniquindio.poo.actividad_dto_record.ViewController;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import co.edu.uniquindio.poo.actividad_dto_record.Model.*;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class MostrarEstudianteViewController {
+
+    private Escuela escuela = Escuela.getInstance();
 
     @FXML
     private ResourceBundle resources;
@@ -38,26 +48,32 @@ public class MostrarEstudianteViewController {
     private Separator sp_estudiantes2;
 
     @FXML
-    private TableColumn<?, ?> tblClm_edadEstudiante;
+    private TableColumn<EstudianteDTO, String> tblClm_nombreEstudiantes;
 
     @FXML
-    private TableColumn<?, ?> tblClm_nombreEstudiantes;
+    private TableColumn<EstudianteDTO, Integer> tblClm_edadEstudiante;
 
     @FXML
-    private TableView<?> tblVw_estudiantes;
+    private TableView<EstudianteDTO> tblVw_estudiantes;
 
     @FXML
     void onClick_VolverMenuEstudiante(ActionEvent event) {
-
+        cargarVista("/co/edu/uniquindio/poo/actividad_dto_record/menuEstudiante.fxml", "Menú Estudiantes");
     }
 
     @FXML
     void onClick_salir(ActionEvent event) {
-
+        Stage stage = (Stage) btn_salir.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     void initialize() {
+        cargarEstudiantes();
+
+        tblClm_nombreEstudiantes.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
+        tblClm_edadEstudiante.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getEdad()).asObject());
+
         assert aPn_mostrarEstudiantes != null : "fx:id=\"aPn_mostrarEstudiantes\" was not injected: check your FXML file 'mostrarEstudiantes.fxml'.";
         assert btn_salir != null : "fx:id=\"btn_salir\" was not injected: check your FXML file 'mostrarEstudiantes.fxml'.";
         assert btn_volverMenuEstudiante != null : "fx:id=\"btn_volverMenuEstudiante\" was not injected: check your FXML file 'mostrarEstudiantes.fxml'.";
@@ -65,10 +81,41 @@ public class MostrarEstudianteViewController {
         assert sp_estudiantes1 != null : "fx:id=\"sp_estudiantes1\" was not injected: check your FXML file 'mostrarEstudiantes.fxml'.";
         assert sp_estudiantes2 != null : "fx:id=\"sp_estudiantes2\" was not injected: check your FXML file 'mostrarEstudiantes.fxml'.";
         assert tblClm_edadEstudiante != null : "fx:id=\"tblClm_edadEstudiante\" was not injected: check your FXML file 'mostrarEstudiantes.fxml'.";
-        assert tblClm_nombreEstudiantes != null : "fx:id=\"tblClm_nombreEstudiantes\" was not injected: check your FXML file 'mostrarEstudiantes.fxml'.";
+        assert tblClm_nombreEstudiantes != null : "fx:id=\"tblClm_nombreEstudiante\" was not injected: check your FXML file 'mostrarEstudiantes.fxml'.";
         assert tblVw_estudiantes != null : "fx:id=\"tblVw_estudiantes\" was not injected: check your FXML file 'mostrarEstudiantes.fxml'.";
-
     }
 
-}
+    private void cargarEstudiantes() {
+        if (escuela != null) {
+            List<EstudianteDTO> listaDTO = escuela.getEstudiantes().stream()
+                    .map(EstudianteDTO::new)
+                    .collect(Collectors.toList());
 
+            ObservableList<EstudianteDTO> estudiantes = FXCollections.observableArrayList(listaDTO);
+            tblVw_estudiantes.setItems(estudiantes);
+        }
+    }
+
+    private void cargarVista(String vista, String titulo) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(vista));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) aPn_mostrarEstudiantes.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle(titulo);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Error al cargar la vista", "No se pudo cargar la vista: " + vista);
+        }
+    }
+
+    private void mostrarAlerta(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+}

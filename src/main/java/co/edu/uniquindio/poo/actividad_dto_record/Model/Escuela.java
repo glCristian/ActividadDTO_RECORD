@@ -6,6 +6,7 @@ import java.util.LinkedList;
 
 public class Escuela {
 
+    private static Escuela instancia;
     String nombre;
     private Collection<Estudiante> estudiantes;
     private Collection<Curso> cursos;
@@ -20,6 +21,17 @@ public class Escuela {
         this.cursos = new LinkedList<>();
     }
 
+
+    /**
+     * Metodo para obtener una instancia única de la clase escuela
+     * @return
+     */
+    public static Escuela getInstance() {
+        if (instancia == null) {
+            instancia = new Escuela("UQ");
+        }
+        return instancia;
+    }
 
 
     //------------------------------------------CRUDS--------------------------------------------//
@@ -43,7 +55,7 @@ public class Escuela {
      * Metodo para agregar un estudiante a la lista de estudiantes
      * @param estudiante
      */
-    public void agregarPaciente(Estudiante estudiante) {
+    public void agregarEstudiante(Estudiante estudiante) {
         if (buscarEstudinatePorIdentificacion(estudiante.getIdentificacion()) == null) {
             estudiantes.add(estudiante);
             System.out.println("Estudinate agregado correctamente.");

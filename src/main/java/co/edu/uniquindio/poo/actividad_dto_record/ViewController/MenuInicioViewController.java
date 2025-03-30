@@ -40,12 +40,12 @@ public class MenuInicioViewController {
 
     @FXML
     void onClick_curso(ActionEvent event) {
-        cargarVista("menuCurso.fxml", "Menu de Curso");
+        cargarVista("/co/edu/uniquindio/poo/actividad_dto_record/menuCurso.fxml", "Menu de Curso");
     }
 
     @FXML
     void onClick_estudiante(ActionEvent event) {
-        cargarVista("menuEstudiante.fxml", "Menu de Estudiante");
+        cargarVista("/co/edu/uniquindio/poo/actividad_dto_record/menuEstudiante.fxml", "Menu de Estudiante");
     }
 
     @FXML

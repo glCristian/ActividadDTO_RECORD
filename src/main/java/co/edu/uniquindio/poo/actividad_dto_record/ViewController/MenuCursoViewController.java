@@ -67,13 +67,21 @@ public class MenuCursoViewController {
 
     private Escuela escuela = Escuela.getInstance();
 
-
-
+    /**
+     * Metodo que maneja el evento de clic en el boton para mostrar los cursos.
+     * Carga la vista de mostrar cursos.
+     * @param event
+     */
     @FXML
     void onClick_mostrarCursos(ActionEvent event) {
         cargarVista("/co/edu/uniquindio/poo/actividad_dto_record/mostrarCursos.fxml", "Lista de Cursos");
     }
 
+    /**
+     * Metodo que maneja el evento de clic en el boton para registrar un nuevo curso.
+     * Valida la entrada del usuario y agrega el curso a la escuela.
+     * @param event
+     */
     @FXML
     void onClick_registrarCurso(ActionEvent event) {
         String nombre = txFl_nombreCurso.getText();
@@ -102,17 +110,30 @@ public class MenuCursoViewController {
         txFl_duracionCurso.clear();
     }
 
+    /**
+     * Metodo que maneja el evento de clic en el boton para salir de la aplicacion.
+     * @param event
+     */
     @FXML
     void onClick_salir(ActionEvent event) {
         Stage stage = (Stage) btn_salir.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Metodo que maneja el evento de clic en el boton para volver al menu principal.
+     * Carga la vista del menu principal.
+     * @param event
+     */
     @FXML
     void onClick_volverMenuInicio(ActionEvent event) {
        cargarVista("/co/edu/uniquindio/poo/actividad_dto_record/menuInicio.fxml", "Menú principal");
     }
 
+    /**
+     * Metodo que se llama al inicializar el controlador.
+     * Verifica que todos los elementos de la interfaz se hayan inyectado correctamente.
+     */
     @FXML
     void initialize() {
         assert aPn_MenuCurso != null : "fx:id=\"aPn_MenuCurso\" was not injected: check your FXML file 'menuCurso.fxml'.";
@@ -132,6 +153,11 @@ public class MenuCursoViewController {
 
     }
 
+    /**
+     * Metodo que muestra una alerta con un titulo y un mensaje.
+     * @param titulo
+     * @param mensaje
+     */
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
@@ -140,6 +166,12 @@ public class MenuCursoViewController {
         alert.showAndWait();
     }
 
+
+    /**
+     * Metodo que carga una nueva vista en la aplicación.
+     * @param vista
+     * @param titulo
+     */
     private void cargarVista(String vista, String titulo) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(vista));

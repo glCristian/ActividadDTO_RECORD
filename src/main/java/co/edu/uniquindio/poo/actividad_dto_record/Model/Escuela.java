@@ -65,7 +65,7 @@ public class Escuela {
     }
 
     /**
-     * Metodo para actualizar los datos de un estuiante
+     * Metodo para actualizar los datos de un estudiante
      * @param identificacion
      * @param nuevoNombre
      * @param nuevaEdad
@@ -98,6 +98,8 @@ public class Escuela {
             System.out.println("Error: No se encontró el estudiante para eliminar ");
         }
     }
+
+
 
 
     /**
